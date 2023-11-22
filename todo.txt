@@ -1,0 +1,17 @@
+- create model.py ===> Done
+- define get_model() ==> Partially Done
+- build tokenizer.py ==> Done
+
+### Model Saved
+- global step
+- best_val_loss (as we are going to save only the model with better validation loss than before)
+- epoch
+- model_state_dict
+- optimizer_state_dict
+
+### Tensorboard log
+- global step
+- training loss vs global step
+- training perplexity vs global step
+- validation loss vs epoch
+- validation loss vs global step

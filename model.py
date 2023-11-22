@@ -1,12 +1,8 @@
 import torch
-from torchtext.vocab import build_vocab_from_iterator
-from torchtext.data.utils import get_tokenizer
-
-from torch.utils.data import dataset
-
 from torch import Tensor, nn
 from torch.nn import TransformerEncoder, TransformerEncoderLayer
 
+import math
 
 class PositionalEncoding(nn.Module):
 
