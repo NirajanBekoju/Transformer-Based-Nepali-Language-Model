@@ -36,7 +36,7 @@ class TransformerModel(nn.Module):
         encoder_layers = TransformerEncoderLayer(
             d_model, nhead, d_hid, dropout)
         self.transformer_encoder = TransformerEncoder(encoder_layers, nlayers)
-        self.encoder = nn.Embedding(ntoken, d_model)
+        self.embedding = nn.Embedding(ntoken, d_model)
         self.d_model = d_model
         self.decoder = nn.Linear(d_model, ntoken)
 
@@ -44,7 +44,7 @@ class TransformerModel(nn.Module):
 
     def init_weights(self) -> None:
         initrange = 0.1
-        self.encoder.weight.data.uniform_(-initrange, initrange)
+        self.embedding.weight.data.uniform_(-initrange, initrange)
         self.decoder.bias.data.zero_()
         self.decoder.weight.data.uniform_(-initrange, initrange)
 
@@ -57,7 +57,7 @@ class TransformerModel(nn.Module):
             output Tensor of shape [seq_len, batch_size, ntoken]
         """
         src = src.long()
-        src = self.encoder(src) * math.sqrt(self.d_model)
+        src = self.embedding(src) * math.sqrt(self.d_model)
         src = self.pos_encoder(src)
         output = self.transformer_encoder(src, src_mask)
         output = self.decoder(output)
