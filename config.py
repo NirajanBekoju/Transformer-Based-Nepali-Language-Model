@@ -2,8 +2,8 @@ def getConfig():
     model_config = {
         "emsize" : 300, 
         "d_hid" : 1024,
-        "nlayers" : 4,
-        "nhead" : 4, 
+        "nlayers" : 6,
+        "nhead" : 6, 
         "dropout" : 0.2,
         "bptt" : 64
     }
