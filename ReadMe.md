@@ -1,16 +1,39 @@
 # Transformer based Nepali Language Generation Model
+Nepali language generation model was trained and developed using the standard transformer encoder. The major objectives of this project are as follows:
 
-### Steps to run
+- Develop text generation model for Nepali language.
+- Develop a spelling correction system on the basis of context of the language.
+- Create the feature extraction model for Nepali language which can be used for various downstream tasks like text classification, text summarization, questions answering, etc.
+
+## Deployment
+The model is currently deployed on Hugging Face using gradio. 
+
+[https://huggingface.co/spaces/NirajanBekoju/Nepali-Text-Generation-Model](https://huggingface.co/spaces/NirajanBekoju/Nepali-Text-Generation-Model)
+
+## Steps to Run Locally
 
 Clone the git repository
 ```
 git clone https://github.com/NirajanBekoju/Transformer-Based-Nepali-Language-Model
 ```
 
-Create the conda enviroment from the environment.yml file
+Create the conda enviroment from the environment.yml file or you can create virtual environment and install the required packages as follow
 ```
 conda env create -f environment.yml
+
+OR 
+
+virtualenv venv
+source venv/bin/activate
+pip install -r requirements.txt
 ```
+
+After the configuration of the environment, you can run the application 
+```
+python3 app.py
+```
+
+
 
 View tensoarboard logs
 ```
@@ -18,3 +41,20 @@ cd tensorboard_logs
 tensorboard --logdir=./
 ```
 
+## References
+* A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L. u. Kaiser, and
+I. Polosukhin, “Attention is all you need,” in Advances in Neural Information Processing
+Systems (I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, and
+R. Garnett, eds.), vol. 30, Curran Associates, Inc., 2017.
+
+* Y. Bengio, R. Ducharme, and P. Vincent, “A neural probabilistic language model,” Advances
+in neural information processing systems, vol. 13, 2000.
+
+* T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, “Distributed representations
+of words and phrases and their compositionality,” Advances in neural information processing
+systems, vol. 26, 2013.
+
+* S. Timilsina, M. Gautam, and B. Bhattarai, “Nepberta: Nepali language model trained in
+a large corpus,” in Proceedings of the 2nd Conference of the Asia-Pacific Chapter of the
+Association for Computational Linguistics and the 12th International Joint Conference on
+Natural Language Processing, pp. 273–284, 2022.
