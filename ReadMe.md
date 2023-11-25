@@ -1,9 +1,21 @@
 # Transformer based Nepali Language Generation Model
+
+## Problem Specification
+- Since, Nepali language is rich in vocabulary, it is confusion for many people to choose the right vocab. The language model can help you choose the vocab you need.
+- Confusion in ह्रस्व दीर्घ and other grammatical rules in Nepali language can cause lots of spelling mistake. But through this language model, the spelling correction system can be developed which can understand the context of the text and correct them. 
+- Lack of reliable language model for low resource language like Nepali, it is very difficult to perform various downstream tasks like text classification, question answering, summarization, etc.
+
+## Objectives
 Nepali language generation model was trained and developed using the standard transformer encoder. The major objectives of this project are as follows:
 
 - Develop text generation model for Nepali language.
 - Develop a spelling correction system on the basis of context of the language.
 - Create the feature extraction model for Nepali language which can be used for various downstream tasks like text classification, text summarization, questions answering, etc.
+
+## Dataset
+The Oscar corpus Nepali de-duplicated dataset (ne_dedup.txt) with size of 1.24 GB was used to train this transformer model.
+
+[https://www.kaggle.com/datasets/hsebarp/oscar-corpus-nepali](https://www.kaggle.com/datasets/hsebarp/oscar-corpus-nepali)
 
 ## Deployment
 The model is currently deployed on Hugging Face using gradio. 
@@ -17,7 +29,7 @@ Clone the git repository
 git clone https://github.com/NirajanBekoju/Transformer-Based-Nepali-Language-Model
 ```
 
-Create the conda enviroment from the environment.yml file or you can create virtual environment and install the required packages as follow
+Create the Conda environment from the environment.yml file, or you can create virtual environment and install the required packages as follows
 ```
 conda env create -f environment.yml
 
