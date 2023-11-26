@@ -13,9 +13,17 @@ Nepali language generation model was trained and developed using the standard tr
 - Create the feature extraction model for Nepali language which can be used for various downstream tasks like text classification, text summarization, questions answering, etc.
 
 ## Dataset
-The Oscar corpus Nepali de-duplicated dataset (ne_dedup.txt) with size of 1.24 GB was used to train this transformer model.
+The Oscar corpus Nepali de-duplicated dataset (**ne_dedup.txt**) with size of 1.24 GB was used to train this transformer model.
 
 [https://www.kaggle.com/datasets/hsebarp/oscar-corpus-nepali](https://www.kaggle.com/datasets/hsebarp/oscar-corpus-nepali)
+
+## Evaluation
+The train and validation perplexity obtained after **5 epochs** training are 159.7 and 140.6 respectively. The graph for the evaluation are as follows:
+
+![Train Perplexity](evaluation_graph/train_ppl.png)
+![Validation Perplexity](evaluation_graph/val_ppl.png)
+
+
 
 ## Deployment
 The model is currently deployed on Hugging Face using gradio. 
