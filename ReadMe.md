@@ -23,12 +23,13 @@ The train and validation perplexity obtained after **5 epochs** training are 159
 ![Train Perplexity](evaluation_graph/train_ppl.png)
 ![Validation Perplexity](evaluation_graph/val_ppl.png)
 
-
-
 ## Deployment
 The model is currently deployed on Hugging Face using gradio. 
 
 [https://huggingface.co/spaces/NirajanBekoju/Nepali-Text-Generation-Model](https://huggingface.co/spaces/NirajanBekoju/Nepali-Text-Generation-Model)
+
+## Project Presentation
+- [Final Presentation Slide](https://docs.google.com/presentation/d/1-aJzwzHFtGdh1KFEoU9gLOk9KO-90WXBjVlL8Bfszkg/edit?usp=sharing)
 
 ## Steps to Run Locally
 
