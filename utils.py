@@ -1,7 +1,7 @@
 import regex as re
 import torch 
 import pickle
-from tokenizers import BertWordPieceTokenizer
+import tokenizers
 
 
 
@@ -91,6 +91,9 @@ def preProcessText(text, tokenizer_type = 'default'):
     elif tokenizer_type == 'morph_bpe':
         text = morpheme_encoder(text)
         
+    elif tokenizer_type == 'bpe':
+        pass
+        
     
         
     return text
@@ -115,6 +118,9 @@ def getTokenizer(tokenizer_type = 'default'):
  
     elif tokenizer_type == 'morph_bpe':
         tokenizer_path = tokenizer_dir + "/tokenizer_mp_bpe.pickle"
+
+    elif tokenizer_type == 'bpe':
+        tokenizer_path = tokenizer_dir + "/tokenizer_bpe.pickle"
         
     elif tokenizer_type == 'morpheme':
         tokenizer_path = tokenizer_dir + "/tokenizer.pth"
