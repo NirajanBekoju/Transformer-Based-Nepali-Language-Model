@@ -77,14 +77,21 @@ def preProcessText(text, tokenizer_type = 'default'):
         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
     
     
-    if tokenizer_type == 'word_piece':
+    elif tokenizer_type == 'word_piece':
         #replace devnagari tokens that doesn't work well for the bert-wordpiece tokenizer  
         text = word_piece_encoder(text)
         
-    if tokenizer_type == 'morpheme':
-        text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
+    elif tokenizer_type == 'morpheme':
+#         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
         text = morpheme_encoder(text)
-
+        
+    elif tokenizer_type == 'sentence_piece':
+        pass
+    
+    elif tokenizer_type == 'morph_bpe':
+        text = morpheme_encoder(text)
+        
+    
         
     return text
 
@@ -102,7 +109,12 @@ def getTokenizer(tokenizer_type = 'default'):
             
     elif tokenizer_type == 'word_piece':
         tokenizer_path = tokenizer_dir + "/tokenizer_wp.pickle"
-      
+    
+    elif tokenizer_type == 'sentence_piece':
+        tokenizer_path = tokenizer_dir + "/tokenizer_sp.pickle"
+ 
+    elif tokenizer_type == 'morph_bpe':
+        tokenizer_path = tokenizer_dir + "/tokenizer_mp_bpe.pickle"
         
     elif tokenizer_type == 'morpheme':
         tokenizer_path = tokenizer_dir + "/tokenizer.pth"
