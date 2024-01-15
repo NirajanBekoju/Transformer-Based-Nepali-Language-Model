@@ -36,7 +36,31 @@ def word_piece_encoder(text):
     
     return text
 
+def morpheme_encoder(text):
+    
+    # Trick$ to make the morpheme$ work together
+    tr = re.sub(r'[ ]+', r' ', text)
+    tr = re.sub(r'- -', r'*', tr)
+    tr = re.sub(r'-[ ]+', r'*', tr)
+    tr = re.sub(r'[ ]+-', r'*',tr)
+    tr = re.sub(r'\*', r' * ',tr)
+    tr = re.sub(r'-', r' ',tr)
+    
+    return tr
+    
+    
+
+
 def preProcessText(text, tokenizer_type = 'default'):
+    
+    
+    if tokenizer_type == 'morpheme':
+#         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
+        text = morpheme_encoder(text)
+        
+        return text
+    
+    
     # put space in beteen the | -> devanagari danda to make it a separate word.
     text = re.sub(r'\s*[\u0964]\s*', r'\u0020\u0964\u0020', text)
     # put space around the question mark ?  to make it a separate word
@@ -47,13 +71,19 @@ def preProcessText(text, tokenizer_type = 'default'):
     text = re.sub(r'\s*\n\s*','\n', text)
     # replace any non-devangari string with a blank
     text = re.sub(r'[^\u0900-\u097F,?\s+]','', text) 
-    # add space in between the devanagari numbers and replace number by <num> token
-    text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
+    
+    if tokenizer_type == 'default':
+        # add space in between the devanagari numbers and replace number by <num> token
+        text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
     
     
     if tokenizer_type == 'word_piece':
         #replace devnagari tokens that doesn't work well for the bert-wordpiece tokenizer  
         text = word_piece_encoder(text)
+        
+    if tokenizer_type == 'morpheme':
+        text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
+        text = morpheme_encoder(text)
 
         
     return text
@@ -72,8 +102,16 @@ def getTokenizer(tokenizer_type = 'default'):
             
     elif tokenizer_type == 'word_piece':
         tokenizer_path = tokenizer_dir + "/tokenizer_wp.pickle"
+      
+        
+    elif tokenizer_type == 'morpheme':
+        tokenizer_path = tokenizer_dir + "/tokenizer.pth"
+        vocab_path = tokenizer_dir + "/transformer_vocab_morpheme.pickle"
+        loaded_tokenizer = torch.load(tokenizer_path)
+        with open(vocab_path,'rb') as f:
+            loaded_vocab = pickle.load(f)
     
-    if tokenizer_type != 'default':
+    if tokenizer_type != 'default' and tokenizer_type!='morpheme':
         with open(tokenizer_path, 'rb') as file:
             loaded_tokenizer = pickle.load(file)
             

@@ -16,7 +16,7 @@ def getConfig(small = False):
             "nlayers" : 4,
             "nhead" : 4, 
             "dropout" : 0.05,
-            "bptt" : 16
+            "bptt" : 32
         }
 
     app_config = {
