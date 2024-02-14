@@ -39,11 +39,20 @@ def word_piece_encoder(text):
 def morpheme_encoder(text):
     
     # Trick$ to make the morpheme$ work together
+#     tr = re.sub(r'[ ]+', r' ', text)
+#     tr = re.sub(r'- -', r'*', tr)
+#     tr = re.sub(r'-[ ]+', r'*', tr)
+#     tr = re.sub(r'[ ]+-', r'*',tr)
+#     tr = re.sub(r'\*', r' * ',tr)
+#     tr = re.sub(r'-', r' ',tr)
+    
     tr = re.sub(r'[ ]+', r' ', text)
     tr = re.sub(r'- -', r'*', tr)
     tr = re.sub(r'-[ ]+', r'*', tr)
     tr = re.sub(r'[ ]+-', r'*',tr)
+    tr = re.sub(r' ', r' * ',tr)
     tr = re.sub(r'\*', r' * ',tr)
+    tr = re.sub(r'  ', r' ', tr)
     tr = re.sub(r'-', r' ',tr)
     
     return tr
@@ -54,7 +63,7 @@ def morpheme_encoder(text):
 def preProcessText(text, tokenizer_type = 'default'):
     
     
-    if tokenizer_type == 'morpheme':
+    if tokenizer_type == 'morpheme' or tokenizer_type == 'morph_bpe':
 #         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
         text = morpheme_encoder(text)
         
@@ -81,15 +90,15 @@ def preProcessText(text, tokenizer_type = 'default'):
         #replace devnagari tokens that doesn't work well for the bert-wordpiece tokenizer  
         text = word_piece_encoder(text)
         
-    elif tokenizer_type == 'morpheme':
-#         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
-        text = morpheme_encoder(text)
+#     elif tokenizer_type == 'morpheme':
+# #         text = re.sub(r'\s*[\u0966-\u0976]+\s*', '\u0020<num>\u0020', text)
+#         text = morpheme_encoder(text)
         
     elif tokenizer_type == 'sentence_piece':
         pass
     
-    elif tokenizer_type == 'morph_bpe':
-        text = morpheme_encoder(text)
+#     elif tokenizer_type == 'morph_bpe':
+#         text = morpheme_encoder(text)
         
     elif tokenizer_type == 'bpe':
         pass
@@ -141,7 +150,6 @@ def try_gpu(i=0):
     if torch.cuda.device_count() >= i+1:
         return torch.device(f'cuda:{i}')
     return torch.device('cpu')
-
 
 
 def split_list(l):
