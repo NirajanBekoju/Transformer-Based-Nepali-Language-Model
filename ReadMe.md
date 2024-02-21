@@ -31,6 +31,14 @@ The model is currently deployed on Hugging Face using gradio.
 ## Project Presentation
 - [Final Presentation Slide](https://docs.google.com/presentation/d/1-aJzwzHFtGdh1KFEoU9gLOk9KO-90WXBjVlL8Bfszkg/edit?usp=sharing)
 
+
+## Frontend and Backend
+Frontent is developed using React and Backend is developed using django and django rest framework.
+
+* [Backend](https://github.com/NirajanBekoju/Backend-Nepali-Text-Generation-Model)
+* [Frontend](https://github.com/AAreLaa/NLP-UI)
+
+
 ## Steps to Run Locally
 
 Clone the git repository
